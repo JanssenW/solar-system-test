@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    networks:
+      - solar-system-test_default
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/solar-system
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5.0
+    networks:
+      - solar-system-test_default
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=solarsystem
+    volumes:
+      - ss_mongodb_data:/data/db
+
+volumes:
+  ss_mongodb_data:
+
+networks:
+  default:
+    external:
+      name: solar-system-test_default
