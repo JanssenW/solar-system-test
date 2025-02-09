@@ -22,13 +22,12 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_USERNAME=root
-      - MONGO_PASSWORD=solarsystem
-      - MONGO_INITDB_DATABASE=solar-system
+      - MONGO_INITDB_ROOT_USERNAME:=root
+      - MONGO_INITDB_ROOT_PASSWORD=solarsystem
     volumes:
       - ss_mongodb_data:/data/db
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh -u root -p solarsystem --authenticationDatabase admin solar-system --quiet | grep 1
+      test: echo 'db.runCommand("ping").ok' | mongosh -u root -p solarsystem --authenticationDatabase admin --quiet | grep 1
       interval: 5s
       timeout: 5s
       retries: 5
