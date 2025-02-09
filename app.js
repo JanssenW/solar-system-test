@@ -5,16 +5,14 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const app = express();
 const cors = require('cors')
+const mongoURI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@naj-cloud.online/ss-db`;
 
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
 app.use(cors())
 
-mongoose.connect(process.env.MONGO_URI, {
-    user: process.env.MONGO_USERNAME,
-    pass: process.env.MONGO_PASSWORD
-})
+mongoose.connect(mongoURI)
 .then(() => console.log("MongoDB Connection Successful"))
 .catch(err => console.error("Connection error: " + err));
 
