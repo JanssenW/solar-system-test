@@ -11,11 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
 app.use(cors())
 
-mongoose.connect(process.env.MONGO_URI, {
-    authSource: 'admin',
-    user: 'root',
-    pass: 'solarsystem'
-  })
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connection Successful"))
 .catch(err => console.error("Connection error: " + err));
 

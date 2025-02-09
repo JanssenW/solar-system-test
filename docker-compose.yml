@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/solar-system
+      - MONGO_URI=mongodb://root:solarsystem@mongo:27017/solar-system?authSource=admin
     depends_on:
       - mongo
 
@@ -21,6 +21,7 @@ services:
     environment:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=solarsystem
+      - MONGO_INITDB_DATABASE=solar-system
     volumes:
       - ss_mongodb_data:/data/db
 
