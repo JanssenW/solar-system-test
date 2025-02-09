@@ -4,7 +4,7 @@ services:
   app:
     build: .
     networks:
-      - solar-system-test_default
+      - ss-network
     ports:
       - "3000:3000"
     environment:
@@ -15,7 +15,7 @@ services:
   mongo:
     image: mongo:5.0
     networks:
-      - solar-system-test_default
+      - ss-network
     ports:
       - "27017:27017"
     environment:
@@ -28,6 +28,5 @@ volumes:
   ss_mongodb_data:
 
 networks:
-  default:
-      name: solar-system-test_default
-      external: true
+  ss-network:
+    driver: bridge
