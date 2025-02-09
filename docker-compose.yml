@@ -29,5 +29,5 @@ volumes:
 
 networks:
   default:
-    external:
       name: solar-system-test_default
+      external: true
