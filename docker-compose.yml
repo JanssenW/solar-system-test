@@ -10,10 +10,13 @@ services:
     environment:
       - MONGO_URI=mongodb://root:solarsystem@mongo:27017/solar-system?authSource=admin
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
+      
 
   mongo:
     image: mongo:5.0
+    command: --auth
     networks:
       - ss-network
     ports:
@@ -24,6 +27,11 @@ services:
       - MONGO_INITDB_DATABASE=solar-system
     volumes:
       - ss_mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh -u root -p solarsystem --authenticationDatabase admin solar-system --quiet | grep 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   ss_mongodb_data:
