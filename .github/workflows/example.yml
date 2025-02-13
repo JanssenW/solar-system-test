@@ -20,11 +20,12 @@ jobs:
           run: cat README.md
 
         - name: Get Multiple Info Related to System
-          run: pwd
-               lsb_release -a
-               whoami
-               cat /etc/os-release
-               echo "ps aux to get process list"
-               ps aux
-               echo "using top to see process that are more consuming memory and CPU"
-               top
+          run: |
+            pwd
+            lsb_release -a
+            whoami
+            cat /etc/os-release
+            echo "ps aux to get process list"
+            ps aux
+            echo "using top to see process that are more consuming memory and CPU"
+            top
