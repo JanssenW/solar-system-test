@@ -28,4 +28,5 @@ jobs:
             echo "ps aux to get process list"
             ps aux
             echo "using top to see process that are more consuming memory and CPU"
+            sudo apt install procps
             top
