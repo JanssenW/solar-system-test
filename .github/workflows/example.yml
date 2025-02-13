@@ -27,6 +27,9 @@ jobs:
             cat /etc/os-release
             echo "ps aux to get process list"
             ps aux
+
+        - name: executing Shell Script
+          run: ./kodekloud-exercise/ascii-script.sh 
        #     echo "using top to see process that are more consuming memory and CPU"
        #     sudo apt install procps
        #     top
