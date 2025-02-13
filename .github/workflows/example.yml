@@ -29,7 +29,9 @@ jobs:
             ps aux
 
         - name: executing Shell Script
-          run: sudo ./kodekloud-exercise/ascii-script.sh 
+          run: |
+            chmod +x ./kodekloud-exercise/ascii-script.sh
+            ./kodekloud-exercise/ascii-script.sh 
        #     echo "using top to see process that are more consuming memory and CPU"
        #     sudo apt install procps
        #     top
