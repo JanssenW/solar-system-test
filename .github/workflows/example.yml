@@ -31,5 +31,5 @@ jobs:
        #     sudo apt install procps
        #     top
 
-        - name: Generate ASCII Artwork
-          run: cowsay -f dragon "Run for cover, I'm a DRAGON... RAWR" >> dragon.txt
+      #  - name: Generate ASCII Artwork
+      #    run: cowsay -f dragon "Run for cover, I'm a DRAGON... RAWR" >> dragon.txt
