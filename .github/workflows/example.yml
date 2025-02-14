@@ -33,6 +33,13 @@ jobs:
             chmod +x ./kodekloud-exercise/ascii-script.sh
             ./kodekloud-exercise/ascii-script.sh
 
+        - name: check dragon file
+          run: |
+            pwd
+            ls -lha ./kodekloud-exercise
+            ls ./
+            cat dragon.txt
+
         - uses: actions/upload-artifact@v4
           with:
             name: dragon-file
@@ -54,7 +61,7 @@ jobs:
 
     third_job:
       needs: second_job
-      name: Second Job
+      name: Third Job
       runs-on: ubuntu-latest
       steps:
         - name: Sleep for 10 seconds
