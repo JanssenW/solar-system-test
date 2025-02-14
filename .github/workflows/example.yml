@@ -33,6 +33,11 @@ jobs:
             chmod +x ./kodekloud-exercise/ascii-script.sh
             ./kodekloud-exercise/ascii-script.sh
 
+        - uses: actions/upload-artifact@v4
+          with:
+            name: dragon-file
+            path: ./kodekloud-exercise/dragon.txt
+
     second_job:
         needs: first_job
         name: Second Job
@@ -54,4 +59,10 @@ jobs:
       steps:
         - name: Sleep for 10 seconds
           run: sleep 10
+        - uses: actions/download-artifact@v4
+          with:
+            name: dragon-file
+        - name: Grep File
+          run: grep -i "dragon" dragon.txt
+    
 
