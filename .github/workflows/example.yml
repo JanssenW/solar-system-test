@@ -39,18 +39,18 @@ jobs:
             path: dragon.txt
 
     second_job:
-        needs: first_job
-        name: Second Job
-        runs-on: ubuntu-latest
-        steps:
-          - name: Sleep for 10 seconds
-            run: sleep 10
-          - name: Touch FIle
-            run: |
-              touch dragon.txt
-              echo "dragons does not exists" >> dragon.txt
-          - name: Grep File
-            run: grep -i "dragon" dragon.txt
+      needs: first_job
+      name: Second Job
+      runs-on: ubuntu-latest
+      steps:
+        - name: Sleep for 10 seconds
+          run: sleep 10
+        - name: Touch FIle
+          run: |
+            touch dragon.txt
+            echo "dragons does not exists" >> dragon.txt
+        - name: Grep File
+          run: grep -i "dragon" dragon.txt
 
     third_job:
       needs: second_job
