@@ -34,16 +34,24 @@ jobs:
             ./kodekloud-exercise/ascii-script.sh
 
     second_job:
+        needs: first_job
         name: Second Job
         runs-on: ubuntu-latest
         steps:
           - name: Sleep for 10 seconds
             run: sleep 10
-          - name: Grep
+          - name: Touch FIle
+            run: |
+              touch dragon.txt
+              echo "dragons does not exists" >> dragon.txt
+          - name: Grep File
             run: grep -i "dragon" dragon.txt
-       #     echo "using top to see process that are more consuming memory and CPU"
-       #     sudo apt install procps
-       #     top
 
-      #  - name: Generate ASCII Artwork
-      #    run: cowsay -f dragon "Run for cover, I'm a DRAGON... RAWR" >> dragon.txt
+    third_job:
+      needs: second_job
+      name: Second Job
+      runs-on: ubuntu-latest
+      steps:
+        - name: Sleep for 10 seconds
+          run: sleep 10
+
