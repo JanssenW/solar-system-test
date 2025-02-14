@@ -33,13 +33,6 @@ jobs:
             chmod +x ./kodekloud-exercise/ascii-script.sh
             ./kodekloud-exercise/ascii-script.sh
 
-        - name: check dragon file
-          run: |
-            pwd
-            ls -lha ./kodekloud-exercise
-            ls ./
-            cat dragon.txt
-
         - uses: actions/upload-artifact@v4
           with:
             name: dragon-file
@@ -70,6 +63,9 @@ jobs:
           with:
             name: dragon-file
         - name: Grep File
-          run: grep -i "dragon" dragon.txt
+          run: |
+            grep -i "dragon" dragon.txt
+            cat dragon.txt
+
     
 
