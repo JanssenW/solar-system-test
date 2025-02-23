@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml --exit app-test.js",
-    "coverage": "nyc --reporter cobertura --reporter lcov --reporter text --reporter json-summary  mocha --timeout 10000  --exit app-test.js"
+    "coverage": "nyc --reporter cobertura --reporter lcov --reporter text --reporter json-summary mocha --timeout 10000  --exit app-test.js"
   },
   "nyc": {
     "check-coverage": true,

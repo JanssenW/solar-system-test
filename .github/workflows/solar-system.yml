@@ -53,8 +53,49 @@ jobs:
             cat reports/test-results-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
             ls -lha reports
           
-        - name: Archive Test Result
+        - name: Archive Unit Test Result
           uses: actions/upload-artifact@v4
           with:
             name: Mocha-Test-Result-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
             path: reports/test-results-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
+
+    code-coverage:
+      name: Code Coverage
+      strategy:
+        matrix: 
+          nodejs_version: [18, 19, 20]
+          os: [ubuntu-latest, ubuntu-20.04]
+          exclude: 
+            - nodejs_version: 20
+              os: ubuntu-20.04
+      runs-on: ${{ matrix.os }}
+      steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS Version - ${{ matrix.nodejs_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.nodejs_version }}
+  
+      - name: Install Dependencies
+        run: |
+          npm install
+      
+      - name: Setup Mongo Container
+        run: docker compose -f mongo-docker-compose.yml up -d
+    
+      - name: Check Code Coverage
+        run: npm run coverage
+
+      - name: Print Code Coverage
+        run: |
+          ls -lha
+          ls -lha coverage
+
+          
+      - name: Archive Code Coverage Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: Code-Coverage-Result-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
+          path: coverage
