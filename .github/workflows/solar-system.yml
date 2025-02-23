@@ -31,7 +31,7 @@ jobs:
         - name: Unit Testing
           run: |
             docker ps
-            npm test
+            npm test -- --reporter spec
           
         - name: Archive Test Result
           uses: actions/upload-artifact@v4
