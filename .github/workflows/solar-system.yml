@@ -49,7 +49,7 @@ jobs:
           run: |
             ls -lha
             ls -lha reports
-            cd reports && mv test-results.xml test-results-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
+            mv reports/test-results.xml reports/test-results-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
             cat reports/test-results-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
           
         - name: Archive Test Result
