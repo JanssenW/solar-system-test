@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  #app:
+  #  build: .
+  #  networks:
+  #    - ss-network
+  #  ports:
+  #    - "3000:3000"
+  #  environment:
+  #    - MONGO_URI=mongodb://root:solarsystem@mongo:27017/solar-system?authSource=admin
+  #  depends_on:
+  #    mongo:
+  #      condition: service_healthy
+      
+
+  mongo:
+    image: mongo:5.0
+    command: --auth
+    networks:
+      - ss-network
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=solarsystem
+    volumes:
+      - ss_mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh -u root -p solarsystem --authenticationDatabase admin --quiet | grep 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ss_mongodb_data:
+
+networks:
+  ss-network:
+    driver: bridge
