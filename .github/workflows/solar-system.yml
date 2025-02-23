@@ -6,7 +6,9 @@ on:
     branches:
       - main
       - 'feature/*'
-    
+      
+env:
+  MONGO_URI: 'mongodb://root:solarsystem@mongo:27017/solar-system?authSource=admin'
 jobs:
     unit-testing:
         name: Unit Testing
