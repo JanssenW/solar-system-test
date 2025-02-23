@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha app-test.js --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml --reporter spec --exit",
-    "coverage": "nyc --reporter cobertura --reporter lcov --reporter text --reporter json-summary  mocha app-test.js --timeout 10000  --exit"
+    "test": "mocha --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/test-results.xml --reporter spec --exit app-test.js",
+    "coverage": "nyc --reporter cobertura --reporter lcov --reporter text --reporter json-summary  mocha --timeout 10000  --exit app-test.js"
   },
   "nyc": {
     "check-coverage": true,
@@ -23,6 +23,6 @@
   "devDependencies": {
     "chai": "*",
     "chai-http": "*",
-    "mocha": "*"
+    "mocha": "10.8.2"
   }
 }
