@@ -16,6 +16,7 @@ services:
 
   mongo:
     image: mongo:5.0
+    container_name: mongo
     command: --auth
     networks:
       - ss-network
