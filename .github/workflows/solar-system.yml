@@ -88,17 +88,18 @@ jobs:
         run: docker compose -f mongo-docker-compose.yml up -d
     
       - name: Check Code Coverage
-        run: npm run coverage || true
+        id: code-coverage-step
+        run: npm run coverage
 
       - name: Print Code Coverage
         run: |
           ls -lha
           ls -lha coverage
-
           
       - name: Archive Code Coverage Test Result
+        if: steps.code-coverage-step.outcome == 'failure' || steps.code-coverage-step.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: Code-Coverage-Result-${{ matrix.os }}-${{ matrix.nodejs_version }}.xml
+          name: Code-Coverage-Result-${{ matrix.os }}-${{ matrix.nodejs_version }}
           path: coverage
           retention-days: 5
