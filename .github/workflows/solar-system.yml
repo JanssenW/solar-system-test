@@ -23,7 +23,10 @@ jobs:
             node-version: 20
     
         - name: Install Dependencies
-          run: npm install
+          run: |
+            npm install
+            npm list --depth=0 | grep mocha
+            npm list --depth=0 | grep mocha-junit-reporter
         
         - name: Setup Mongo Container
           run: docker compose -f mongo-docker-compose.yml up -d
@@ -32,7 +35,7 @@ jobs:
           continue-on-error: true
           run: |
             docker ps
-            npm test -- --reporter spec
+            npm test
 
         - name: Unit Testing
           continue-on-error: true
